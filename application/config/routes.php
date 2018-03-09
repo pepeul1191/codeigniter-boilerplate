@@ -54,3 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['']['GET'] = 'home/index';
+//$route['accesos/subtitulo/listar/(:num)']['GET'] = 'accesos/subtitulo/listar/$1';
+$route['ubicaciones/departamento/listar']['GET'] = 'ubicaciones/departamento/listar';
