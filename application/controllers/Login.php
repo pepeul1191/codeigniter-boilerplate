@@ -1,5 +1,7 @@
 <?php
 
+require_once 'vendor/nategood/httpful/bootstrap.php';
+
 class Login extends CI_Controller 
 {
   public function index()
@@ -25,13 +27,6 @@ class Login extends CI_Controller
       	'bower_components/jquery/dist/jquery.min',
 				'bower_components/bootstrap/dist/js/bootstrap.min'
       ],
-      'menu' => '[{"url" : "accesos", "nombre" : "Accesos"},{"url" : "libros", "nombre" : "Libros"}]', 
-      'items' => '[{"subtitulo":"","items":[{"item":"Gestión de Sistemas","url":"accesos/#/sistema"},{"item":"Gestión de Usuarios","url":"accesos/#/usuario"}]}]', 
-      'data' => json_encode(array(
-        'mensaje' => false,
-        'titulo_pagina' => 'Gestión de Accesos', 
-        'modulo' => 'Accesos'
-      )),
     );
     $data_bottom = array(
       'js_bottom' => 'dist/accesos.min.js',
@@ -52,8 +47,38 @@ class Login extends CI_Controller
       )
     );
     $usuario = $this->input->post('usuario');
-    $contrasenia = $this->input->post('contrasenia');
-    
+    $contrasenia = $this->input->post('contrasenia'); 
+    $uri = $this->config->item('servicios')['accesos'] 
+      . 'usuario/acceder?usuario=' . $usuario 
+      . '&contrasenia=' . $contrasenia;
+    $response = \Httpful\Request::post($uri)
+      ->send();
+    if ($response->body == '1'){
+      header('Location: ' . $this->config->item('base_url'));
+    }else{
+      $data_top = array(
+        'mensaje' => true,
+        'titulo_pagina' => 'Gestión de Accesos', 
+        'modulo' => 'Accesos',
+        'title' => 'Bienvenido', 
+        'csss' => [
+          'bower_components/bootstrap/dist/css/bootstrap.min',
+          'bower_components/font-awesome/css/font-awesome.min',
+          'css/style'
+        ],
+        'jss' => [
+          'bower_components/jquery/dist/jquery.min',
+          'bower_components/bootstrap/dist/js/bootstrap.min'
+        ],
+      );
+      $data_bottom = array(
+        'js_bottom' => 'dist/accesos.min.js',
+      );
+      $this->load->helper('View');
+      $this->load->view('layouts/blank_header', $data_top);
+      $this->load->view('login/index');
+      $this->load->view('layouts/blank_footer', $data_bottom);
+    }
   }
 }
 
