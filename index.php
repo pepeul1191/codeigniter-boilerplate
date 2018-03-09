@@ -2,6 +2,7 @@
 
 header('x-powered-by: PHP');
 header('Server: Ubuntu');
+session_start();
 
 /**
  * CodeIgniter

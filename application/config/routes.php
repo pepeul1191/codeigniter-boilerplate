@@ -57,6 +57,8 @@ $route['']['GET'] = 'home/index';
 # login
 $route['login']['GET'] = 'login/index';
 $route['login/acceder']['POST'] = 'login/acceder';
+$route['usuario/ver']['GET'] = 'login/ver';
+$route['usuario/salir']['GET'] = 'login/salir';
 # ubicaciones
 $route['ubicaciones/departamento/listar']['GET'] = 'ubicaciones/departamento/listar';
 $route['ubicaciones/distrito/buscar']['GET'] = 'ubicaciones/distrito/buscar';
