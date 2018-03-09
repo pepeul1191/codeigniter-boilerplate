@@ -3,7 +3,13 @@ class Home extends CI_Controller
 {
   public function index()
   {
-  	//$this->load->library('HttpAccess', array('allow' => ['GET'], 'received' => $this->input->method(TRUE)));
+  	$this->load->library('HttpAccess', 
+  		array(
+  			'config' => $this->config, 
+  			'allow' => ['GET'], 
+  			'received' => $this->input->method(TRUE)
+  		)
+  	);
     $data_top = array(
       'mensaje' => false,
       'titulo_pagina' => 'Gestión de Accesos', 
