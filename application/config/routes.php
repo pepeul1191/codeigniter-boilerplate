@@ -54,5 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['']['GET'] = 'home/index';
-//$route['accesos/subtitulo/listar/(:num)']['GET'] = 'accesos/subtitulo/listar/$1';
 $route['ubicaciones/departamento/listar']['GET'] = 'ubicaciones/departamento/listar';
+$route['ubicaciones/distrito/buscar']['GET'] = 'ubicaciones/distrito/buscar';
+$route['ubicaciones/distrito/nombre']['GET'] = 'ubicaciones/distrito/nombre';
+$route['ubicaciones/distrito/listar/(:num)']['GET'] = 'ubicaciones/distrito/listar/$1';
+$route['ubicaciones/provincia/listar/(:num)']['GET'] = 'ubicaciones/provincia/listar/$1';

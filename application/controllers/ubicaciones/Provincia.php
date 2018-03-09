@@ -1,10 +1,10 @@
 <?php
 
-require_once 'application/models/ubicaciones/Departamento_model.php';
+require_once 'application/models/ubicaciones/Provincia_model.php';
 
-class Departamento extends CI_Controller 
+class Provincia extends CI_Controller 
 {
-  public function listar()
+  public function listar($departamento_id)
   {
   	$this->load->library('HttpAccess', 
   		array(
@@ -13,9 +13,10 @@ class Departamento extends CI_Controller
   			'received' => $this->input->method(TRUE)
   		)
   	);
-    $rs = Model::factory('Departamento_model', 'ubicaciones')
+    $rs = Model::factory('Provincia_model', 'ubicaciones')
     	->select('id')
     	->select('nombre')
+    	->where('departamento_id', $departamento_id)
     	->find_array();
     echo json_encode($rs);
   }
