@@ -54,6 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['']['GET'] = 'home/index';
+# login
+$route['login']['GET'] = 'login/index';
+$route['login/acceder']['POST'] = 'login/acceder';
+# ubicaciones
 $route['ubicaciones/departamento/listar']['GET'] = 'ubicaciones/departamento/listar';
 $route['ubicaciones/distrito/buscar']['GET'] = 'ubicaciones/distrito/buscar';
 $route['ubicaciones/distrito/nombre']['GET'] = 'ubicaciones/distrito/nombre';
