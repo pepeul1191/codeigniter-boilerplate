@@ -1,4 +1,8 @@
 <?php
+
+header('x-powered-by: PHP');
+header('Server: Ubuntu');
+
 /**
  * CodeIgniter
  *
