@@ -5,8 +5,6 @@ class Home extends CI_Controller
   {
   	//$this->load->library('HttpAccess', array('allow' => ['GET'], 'received' => $this->input->method(TRUE)));
     $data_top = array(
-      //'base_url' => BASE_URL,
-      //'static_url' => STATIC_URL,
       'mensaje' => false,
       'titulo_pagina' => 'Gestión de Accesos', 
       'modulo' => 'Accesos',
@@ -22,7 +20,6 @@ class Home extends CI_Controller
       )),
     );
     $data_bottom = array(
-      //'static_url' => STATIC_URL,
       'js_bottom' => 'dist/accesos.min.js',
     );
     $this->load->view('layouts/blank_header', $data_top);
