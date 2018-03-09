@@ -1,7 +1,5 @@
 <?php
 
-require_once 'vendor/nategood/httpful/bootstrap.php';
-
 class Login extends CI_Controller 
 {
   public function index()
@@ -51,6 +49,7 @@ class Login extends CI_Controller
     $uri = $this->config->item('servicios')['accesos'] 
       . 'usuario/acceder?usuario=' . $usuario 
       . '&contrasenia=' . $contrasenia;
+    $this->load->library('Httpful'); 
     $response = \Httpful\Request::post($uri)
       ->send();
     if ($response->body == '1'){
