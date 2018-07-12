@@ -7,7 +7,7 @@ class Distrito extends CI_Controller
     $rpta = '';
     $status = 200;
     try {
-      $rs = \Model::factory('\Models\Distrito', 'ubicaciones')
+      $rs = \Model::factory('\Models\Ubicaciones\Distrito', 'ubicaciones')
       	->select('id')
       	->select('nombre')
       	->where('provincia_id', $provincia_id)
@@ -35,7 +35,7 @@ class Distrito extends CI_Controller
     $rpta = '';
     $status = 200;
     try {
-      $rs = \Model::factory('\Models\VWDistritoProvinciaDepartamento', 'ubicaciones')
+      $rs = \Model::factory('\Models\Ubicaciones\VWDistritoProvinciaDepartamento', 'ubicaciones')
     		->select('id')
     		->select('nombre')
     		->where_like('nombre', $this->input->get('nombre') . '%')
@@ -64,7 +64,7 @@ class Distrito extends CI_Controller
     $rpta = '';
     $status = 200;
     try {
-      $rs = \Model::factory('\Models\VWDistritoProvinciaDepartamento', 'ubicaciones')
+      $rs = \Model::factory('\Models\Ubicaciones\VWDistritoProvinciaDepartamento', 'ubicaciones')
   			->select('nombre')
   			->where('id', $distrito_id)
   			->find_one()

@@ -16,7 +16,7 @@ class Departamento extends CI_Controller
     $rpta = '';
     $status = 200;
     try {
-      $rs = \Model::factory('\Models\Departamento', 'ubicaciones')
+      $rs = \Model::factory('\Models\Ubicaciones\Departamento', 'ubicaciones')
       	->select('id')
       	->select('nombre')
       	->find_array();

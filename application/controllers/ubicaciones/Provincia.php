@@ -7,7 +7,7 @@ class Provincia extends CI_Controller
     $rpta = '';
     $status = 200;
     try {
-      $rs = \Model::factory('\Models\Provincia', 'ubicaciones')
+      $rs = \Model::factory('\Models\Ubicaciones\Provincia', 'ubicaciones')
       	->select('id')
       	->select('nombre')
       	->where('departamento_id', $departamento_id)

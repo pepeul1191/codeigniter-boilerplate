@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Models\Ubicaciones;
 
 class VWDistritoProvinciaDepartamento extends \Model {
 	public static $_table = 'vw_distrito_provincia_departamento';
