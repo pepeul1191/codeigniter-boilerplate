@@ -1,8 +1,8 @@
 <?php
 
-require_once 'application/config/database.php';
+namespace Models;
 
-class Provincia_model extends Model 
+class Provincia extends \Model
 {
 	public static $_table = 'provincias';
 	public static $_connection_name = 'ubicaciones';

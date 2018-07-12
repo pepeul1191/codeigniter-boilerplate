@@ -1,20 +1,17 @@
 <?php
 
-require_once 'application/models/ubicaciones/Distrito_model.php';
-require_once 'application/models/ubicaciones/VWDistritoProvinciaDepartamento_model.php';
-
-class Distrito extends CI_Controller 
+class Distrito extends CI_Controller
 {
   public function listar($provincia_id)
   {
-  	$this->load->library('HttpAccess', 
+  	$this->load->library('HttpAccess',
   		array(
-  			'config' => $this->config, 
-  			'allow' => ['GET'], 
+  			'config' => $this->config,
+  			'allow' => ['GET'],
   			'received' => $this->input->method(TRUE)
   		)
   	);
-    $rs = Model::factory('Distrito_model', 'ubicaciones')
+    $rs = \Model::factory('\Models\Distrito', 'ubicaciones')
     	->select('id')
     	->select('nombre')
     	->where('provincia_id', $provincia_id)
@@ -24,14 +21,14 @@ class Distrito extends CI_Controller
 
   public function buscar()
   {
-  	$this->load->library('HttpAccess', 
+  	$this->load->library('HttpAccess',
   		array(
-  			'config' => $this->config, 
-  			'allow' => ['GET'], 
+  			'config' => $this->config,
+  			'allow' => ['GET'],
   			'received' => $this->input->method(TRUE)
   		)
   	);
-  	$rs = Model::factory('VWDistritoProvinciaDepartamento', 'ubicaciones')
+  	$rs = \Model::factory('\Models\VWDistritoProvinciaDepartamento', 'ubicaciones')
   		->select('id')
   		->select('nombre')
   		->where_like('nombre', $this->input->get('nombre') . '%')
@@ -42,7 +39,7 @@ class Distrito extends CI_Controller
 
   public function nombre($distrito_id)
   {
-		$rs = Model::factory('VWDistritoProvinciaDepartamento', 'ubicaciones')
+		$rs = \Model::factory('\Models\VWDistritoProvinciaDepartamento', 'ubicaciones')
 			->select('nombre')
 			->where('id', $distrito_id)
 			->find_one()
