@@ -30,7 +30,6 @@ class Home extends CI_Controller
     $data_bottom = array(
       'js_bottom' => 'dist/accesos.min.js',
     );
-    $this->load->helper('View');
     $this->load->view('layouts/blank_header', $data_top);
     $this->load->view('home/index');
     $this->load->view('layouts/blank_footer', $data_bottom);

@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('orm', 'view');
 
 /*
 | -------------------------------------------------------------------
@@ -133,5 +133,3 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
-
-require_once(APPPATH.'config/database.php');
