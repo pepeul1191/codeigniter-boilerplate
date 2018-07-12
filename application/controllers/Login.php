@@ -89,7 +89,11 @@ class Login extends CI_Controller
       if($_SESSION['estado'] != 'activo'){
         echo '<h1>El usuario no se encuentra logueado</h1>';
       }else{
-        $rpta = '<h1>Usuario Logeado</h1><ul><li>' . $_SESSION['usuario'] . '</li><li>' .  $_SESSION['tiempo'] . '</li><li>' . $_SESSION['estado'] . '</li></ul>';
+        $rpta = 
+          '<h1>Usuario Logeado</h1><ul><li>' . 
+          $_SESSION['usuario'] . '</li><li>' .  
+          $_SESSION['tiempo'] . '</li><li>' . 
+          $_SESSION['estado'] . '</li></ul>';
         echo $rpta;
       }
     }else{
