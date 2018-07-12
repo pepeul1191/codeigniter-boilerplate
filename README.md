@@ -2,11 +2,19 @@
 
 Instalación de dependencias:
 
-    $ composer install
+    $ composer install && bower install
 
 Archivo de configuración de variables:
 
     application/config/config.php
+
+Refrescar autoload de composer:
+
+    $ composer dump-autoload -o
+
+Correr servidor local:
+
+    $ composer run-dev
 
 ---
 
