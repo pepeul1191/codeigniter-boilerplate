@@ -6,19 +6,14 @@ class Login extends CI_Controller
   {
     $this->load->helper('Login');
     $data_top = array(
-      'mensaje' => false,
-      'titulo_pagina' => 'Gestión de Accesos',
-      'modulo' => 'Accesos',
       'title' => 'Bienvenido',
       'csss' => index_css($this->config),
       'jss' => index_js($this->config),
-    );
-    $data_bottom = array(
-      'js_bottom' => 'dist/accesos.min.js',
+      'mensaje' => '',
     );
     $this->load->view('layouts/blank_header', $data_top);
     $this->load->view('login/index');
-    $this->load->view('layouts/blank_footer', $data_bottom);
+    $this->load->view('layouts/blank_footer', array());
   }
 
   public function acceder()
@@ -32,37 +27,57 @@ class Login extends CI_Controller
     );
     $usuario = $this->input->post('usuario');
     $contrasenia = $this->input->post('contrasenia');
-    $uri = $this->config->item('servicios')['accesos']
-      . 'usuario/acceder?usuario=' . $usuario
-      . '&contrasenia=' . $contrasenia;
-    $this->load->library('Httpful');
+    $url2 = $this->config->item('servicios')['accesos']['url'] . 'usuario/externo/validar';
     try {
-      $response = \Httpful\Request::post($uri)
+      $response = Httpful\Request::post($url2)
+        ->addHeader(
+          $this->config->item('servicios')['accesos']['key'],
+          $this->config->item('servicios')['accesos']['secret'])
+        ->body(array(
+            'usuario' => $usuario,
+            'contrasenia' => $contrasenia,
+          ), Httpful\Mime::FORM)
         ->send();
-      if ($response->body == '1'){
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['estado'] = 'activo';
-        $_SESSION['tiempo'] = date('Y-m-d H:i:s');
-        header('Location: ' . $this->config->item('base_url'));
-      }else{
-        $data_top = array(
-          'mensaje' => true,
-          'titulo_pagina' => 'Gestión de Accesos',
-          'modulo' => 'Accesos',
-          'title' => 'Bienvenido',
-          'csss' => index_css($this->config),
-          'jss' => index_js($this->config),
-        );
-        $data_bottom = array(
-          'js_bottom' => 'dist/accesos.min.js',
-        );
-        $this->load->view('layouts/blank_header', $data_top);
-        $this->load->view('login/index');
-        $this->load->view('layouts/blank_footer', $data_bottom);
+      $mensaje = '';
+      switch($response->code){
+        case 200:
+          if ($response->raw_body == '1'){
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['estado'] = 'activo';
+            $_SESSION['tiempo'] = date('Y-m-d H:i:s');
+            header('Location: ' . $this->config->item('base_url'));
+            exit();
+          }else{
+            $mensaje = 'Usuario y/o contraseña no coincide';
+          }
+          break;
+        case 404:
+          $resp = json_decode($response->body);
+          $mensaje = $resp->{'mensaje'}[0] . ', '. $resp->{'mensaje'}[0];
+          break;
+        case 500:
+          $resp = json_decode($response->body);
+          $mensaje = $resp->{'mensaje'}[0] . ', '. $resp->{'mensaje'}[0];
+          break;
+        default:
+          $mensaje = 'Se ha producido un error no esperado al validar usuario/contraseña';
       }
+    } catch (Httpful\Exception\ConnectionErrorException $e) {
+      $mensaje = 'No se puede acceder al servicio de validación de usuario/contraseña';
     } catch (Exception $e) {
-      echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+      $mensaje = 'Se ha producido un error no controlado al validar usuario/contraseña';
     }
+    $this->load->helper('Login');
+    $data_top = array(
+      'title' => 'Bienvenido',
+      'csss' => index_css($this->config),
+      'jss' => index_js($this->config),
+      'mensaje' => $mensaje,
+    );
+    $this->load->view('layouts/blank_header', $data_top);
+    $this->load->view('login/index');
+    $this->load->view('layouts/blank_footer', array());
+    $this->output->set_status_header(500);
   }
 
   public function ver()
@@ -87,6 +102,7 @@ class Login extends CI_Controller
   {
     session_destroy();
     header('Location: ' . $this->config->item('base_url') . 'login');
+    exit();
   }
 }
 

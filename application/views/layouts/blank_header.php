@@ -3,6 +3,7 @@
 <head>
     <title><?php echo $title;?></title>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="<?php echo $this->config->item('static_url'); ?>favicon.ico">
     <?php echo load_csss($this->config, $csss);?>
 </head>
 <body>

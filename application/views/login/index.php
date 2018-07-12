@@ -1,7 +1,7 @@
 <div class="login-page">
   <div class="form">
     <i class="fa fa-map-marker" aria-hidden="true" id="logo-brand"></i>
-    <form class="login-form" action="<?php $this->config->item('base_url'); ?>login/acceder" method="post">
+    <form class="login-form" action="<?php echo $this->config->item('base_url'); ?>login/acceder" method="post">
       <input type="text" placeholder="usuario" name="usuario"/>
       <input type="password" placeholder="contrasenia" name="contrasenia"/>
       <input type="hidden" name="<?php echo $this->config->item('csrf_token_name');?>" value="<?php echo $this->security->get_csrf_hash(); ?>">

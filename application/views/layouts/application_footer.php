@@ -1,5 +1,3 @@
-    <script type="text/javascript" src="<?php echo $static_url; echo $js_bottom;?>"></script>
+    <?php echo load_jss($this->config, $jss);?>
 </body>
 </html>
-
-

@@ -528,6 +528,11 @@ $config['proxy_ips'] = '';
 $config['ambiente_static'] = 'desarrollo';
 $config['base_url'] = 'http://localhost:8080/';
 $config['static_url'] = 'http://localhost:8080/public/';
+$config['sistema_id'] = '4';
 $config['servicios'] = array(
-  'accesos' => 'http://localhost:5000/',
+  'accesos' => array(
+    'url' => 'http://localhost:4000/',
+    'secret' => 'PKBcauXg6sTXz7Ddlty0nejVgoUodXL89KNxcrfwkEme0Huqtj6jjt4fP7v2uF4L',
+    'key' => 'csrf_val',
+  ),
 );
