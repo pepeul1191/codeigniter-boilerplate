@@ -8,9 +8,11 @@ if ( ! function_exists('index_css'))
     switch($config->item('ambiente')){
       case 'desarrollo':
         $rpta = [
-      	  'bower_components/bootstrap/dist/css/bootstrap.min',
-				  'bower_components/font-awesome/css/font-awesome.min',
-				  //'css/style'
+          'bower_components/bootstrap/dist/css/bootstrap.min',
+          'bower_components/font-awesome/css/font-awesome.min',
+          'bower_components/swp-backbone/assets/css/constants',
+          'bower_components/swp-backbone/assets/css/login',
+          'assets/css/login',
         ];
         break;
       case 'produccion':
@@ -18,7 +20,6 @@ if ( ! function_exists('index_css'))
           'dist/login.min',
         ];
         break;
-
     }
     return $rpta;
   }
@@ -32,16 +33,12 @@ if ( ! function_exists('index_js'))
     switch($config->item('ambiente')){
       case 'desarrollo':
         $rpta = [
-          'bower_components/jquery/dist/jquery.min',
-				  'bower_components/bootstrap/dist/js/bootstrap.min',
         ];
         break;
       case 'produccion':
         $rpta = [
-          'dist/login.min',
         ];
         break;
-
     }
     return $rpta;
   }

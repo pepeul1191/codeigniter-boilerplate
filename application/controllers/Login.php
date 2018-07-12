@@ -4,13 +4,6 @@ class Login extends CI_Controller
 {
   public function index()
   {
-  	$this->load->library('HttpAccess',
-  		array(
-  			'config' => $this->config,
-  			'allow' => ['GET'],
-  			'received' => $this->input->method(TRUE)
-  		)
-  	);
     $this->load->helper('Login');
     $data_top = array(
       'mensaje' => false,

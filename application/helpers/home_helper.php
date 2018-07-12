@@ -18,7 +18,6 @@ if ( ! function_exists('index_css'))
           'dist/home.min',
         ];
         break;
-
     }
     return $rpta;
   }
@@ -41,7 +40,6 @@ if ( ! function_exists('index_js'))
           'dist/home.min',
         ];
         break;
-
     }
     return $rpta;
   }
