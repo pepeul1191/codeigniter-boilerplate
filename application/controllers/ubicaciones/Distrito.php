@@ -16,7 +16,8 @@ class Distrito extends CI_Controller
     	->select('nombre')
     	->where('provincia_id', $provincia_id)
     	->find_array();
-    echo json_encode($rs);
+    $this->output
+      ->set_output(json_encode($rs));
   }
 
   public function buscar()
@@ -34,7 +35,8 @@ class Distrito extends CI_Controller
   		->where_like('nombre', $this->input->get('nombre') . '%')
   		->limit(10)
   		->find_array();
-  	echo json_encode($rs);
+    $this->output
+      ->set_output(json_encode($rs));
   }
 
   public function nombre($distrito_id)
@@ -44,7 +46,8 @@ class Distrito extends CI_Controller
 			->where('id', $distrito_id)
 			->find_one()
 			->as_array();
-		echo $rs['nombre'];
+    $this->output
+      ->set_output($rs['nombre']);
   }
 }
 

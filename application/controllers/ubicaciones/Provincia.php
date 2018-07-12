@@ -16,7 +16,8 @@ class Provincia extends CI_Controller
     	->select('nombre')
     	->where('departamento_id', $departamento_id)
     	->find_array();
-    echo json_encode($rs);
+    $this->output
+        ->set_output(json_encode($rs));
   }
 }
 

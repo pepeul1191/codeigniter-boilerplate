@@ -15,7 +15,8 @@ class Departamento extends CI_Controller
     	->select('id')
     	->select('nombre')
     	->find_array();
-    echo json_encode($rs);
+    $this->output
+      ->set_output(json_encode($rs));
   }
 }
 
