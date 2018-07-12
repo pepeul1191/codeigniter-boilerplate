@@ -5,7 +5,7 @@ if ( ! function_exists('index_css'))
   function index_css($config)
   {
     $rpta = null;
-    switch($config->item('ambiente')){
+    switch($config->item('ambiente_static')){
       case 'desarrollo':
         $rpta = [
       	  'bower_components/bootstrap/dist/css/bootstrap.min',
@@ -28,7 +28,7 @@ if ( ! function_exists('index_js'))
   function index_js($config)
   {
     $rpta = null;
-    switch($config->item('ambiente')){
+    switch($config->item('ambiente_static')){
       case 'desarrollo':
         $rpta = [
           'bower_components/jquery/dist/jquery.min',

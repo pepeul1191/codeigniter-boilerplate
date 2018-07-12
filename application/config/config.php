@@ -23,13 +23,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['ambiente'] = 'desarrollo';
-$config['base_url'] = 'http://localhost:8080/';
-$config['static_url'] = 'http://localhost:8080/public/';
-$config['servicios'] = array(
-  'accesos' => 'http://localhost:5000/',
-);
-
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -454,7 +447,7 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
 $config['csrf_protection'] = TRUE;
-$config['csrf_token_name'] = 'csrfmiddlewaretoken';
+$config['csrf_token_name'] = 'csrf_key';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
@@ -526,3 +519,15 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+/*
+|--------------------------------------------------------------------------
+| Configuraciones propias
+|--------------------------------------------------------------------------
+*/
+
+$config['ambiente_static'] = 'desarrollo';
+$config['base_url'] = 'http://localhost:8080/';
+$config['static_url'] = 'http://localhost:8080/public/';
+$config['servicios'] = array(
+  'accesos' => 'http://localhost:5000/',
+);
