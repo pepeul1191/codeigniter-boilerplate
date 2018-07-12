@@ -26,11 +26,11 @@
 	"autoload": {
     "psr-4": {
     },
-    "classmap": [
-      "vendor/j4mie/idiorm/idiorm.php",
-      "vendor/j4mie/paris/paris.php",
-      "application/models"
-    ]
+	  "classmap": [
+	    "vendor/j4mie/idiorm/idiorm.php",
+	    "vendor/j4mie/paris/paris.php",
+	    "application/models"
+	  ]
   },
 	"scripts": {
     "run-dev": "php -S localhost:8080",

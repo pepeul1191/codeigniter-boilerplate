@@ -27,3 +27,4 @@ Fuentes:
 + http://php.net/manual/es/function.array-key-exists.php
 + https://www.w3schools.com/php/php_sessions.asp
 + https://stackoverflow.com/questions/1995562/now-function-in-php
++ https://stackoverflow.com/questions/13741917/how-to-use-composer-packages-in-codeigniter
