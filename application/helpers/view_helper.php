@@ -10,7 +10,7 @@ if ( ! function_exists('load_csss'))
       $rpta = $rpta . $temp;
     }
     return $rpta;
-  }   
+  }
 }
 
 if ( ! function_exists('load_jss'))
@@ -23,7 +23,7 @@ if ( ! function_exists('load_jss'))
 			$rpta = $rpta . $temp;
 		}
 		return $rpta;
-  }   
+  }
 }
 
 ?>
