@@ -4,6 +4,7 @@ class Departamento extends CI_Controller
 {
   public function listar()
   {
+    /*
     $this->load->library('HttpAccess',
       array(
         'config' => $this->config,
@@ -11,6 +12,7 @@ class Departamento extends CI_Controller
         'received' => $this->input->method(TRUE)
       )
     );
+    */
     $rpta = '';
     $status = 200;
     try {
