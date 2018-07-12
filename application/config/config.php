@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['ambiente'] = 'desarrollo';
-$config['base_url'] = 'http://localhost/codeigniter/';
-$config['static_url'] = 'http://localhost/codeigniter/public/';
+$config['base_url'] = 'http://localhost:8080/';
+$config['static_url'] = 'http://localhost:8080/public/';
 $config['servicios'] = array(
   'accesos' => 'http://localhost:5000/',
 );
