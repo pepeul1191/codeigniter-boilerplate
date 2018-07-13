@@ -26,46 +26,86 @@ class Login extends CI_Controller
       )
     );
     $usuario = $this->input->post('usuario');
-    $contrasenia = $this->input->post('contrasenia');
-    $url2 = $this->config->item('servicios')['accesos']['url'] . 'usuario/externo/validar';
+    $url1 = $this->config->item('servicios')['accesos']['url'] . 'sistema/usuario/validar';
     try {
-      $response = Httpful\Request::post($url2)
+      $response = Httpful\Request::post($url1)
         ->addHeader(
           $this->config->item('servicios')['accesos']['key'],
           $this->config->item('servicios')['accesos']['secret'])
         ->body(array(
             'usuario' => $usuario,
-            'contrasenia' => $contrasenia,
+            'sistema_id' => $this->config->item('sistema_id'),
           ), Httpful\Mime::FORM)
         ->send();
       $mensaje = '';
+      $continuar = true;
       switch($response->code){
         case 200:
-          if ($response->raw_body == '1'){
-            $_SESSION['usuario'] = $usuario;
-            $_SESSION['estado'] = 'activo';
-            $_SESSION['tiempo'] = date('Y-m-d H:i:s');
-            header('Location: ' . $this->config->item('base_url'));
-            exit();
-          }else{
-            $mensaje = 'Usuario y/o contraseña no coincide';
+          if ($response->raw_body != '1'){
+            $continuar = false;
+            $mensaje = 'Usuario no se encuentra registrado en el sistema';
           }
           break;
         case 404:
+          $continuar = false;
           $resp = json_decode($response->body);
           $mensaje = $resp->{'mensaje'}[0] . ', '. $resp->{'mensaje'}[0];
           break;
         case 500:
+          $continuar = false;
           $resp = json_decode($response->body);
           $mensaje = $resp->{'mensaje'}[0] . ', '. $resp->{'mensaje'}[0];
           break;
         default:
-          $mensaje = 'Se ha producido un error no esperado al validar usuario/contraseña';
+          $mensaje = 'Se ha producido un error no esperado al validar usuario/sistema';
       }
     } catch (Httpful\Exception\ConnectionErrorException $e) {
-      $mensaje = 'No se puede acceder al servicio de validación de usuario/contraseña';
+      $mensaje = 'No se puede acceder al servicio de validación de usuario/sistema';
     } catch (Exception $e) {
-      $mensaje = 'Se ha producido un error no controlado al validar usuario/contraseña';
+      $mensaje = 'Se ha producido un error no controlado al validar usuario/sistema';
+    }
+    if($continuar == true){
+      $contrasenia = $this->input->post('contrasenia');
+      $url2 = $this->config->item('servicios')['accesos']['url'] . 'usuario/externo/validar';
+      try {
+        $response = Httpful\Request::post($url2)
+          ->addHeader(
+            $this->config->item('servicios')['accesos']['key'],
+            $this->config->item('servicios')['accesos']['secret'])
+          ->body(array(
+              'usuario' => $usuario,
+              'contrasenia' => $contrasenia,
+            ), Httpful\Mime::FORM)
+          ->send();
+        $mensaje = '';
+        switch($response->code){
+          case 200:
+            if ($response->raw_body == '1'){
+              $_SESSION['usuario'] = $usuario;
+              $_SESSION['estado'] = 'activo';
+              $_SESSION['tiempo'] = date('Y-m-d H:i:s');
+              header('Location: ' . $this->config->item('base_url'));
+              exit();
+            }else{
+              $mensaje = 'Usuario y/o contraseña no coincide';
+            }
+            break;
+          case 404:
+            $resp = json_decode($response->body);
+            $mensaje = $resp->{'mensaje'}[0] . ', '. $resp->{'mensaje'}[0];
+            break;
+          case 500:
+            $resp = json_decode($response->body);
+            $mensaje = $resp->{'mensaje'}[0] . ', '. $resp->{'mensaje'}[0];
+            break;
+          default:
+            $mensaje = 'Se ha producido un error no esperado al validar usuario/contraseña';
+        }
+      } catch (Httpful\Exception\ConnectionErrorException $e) {
+        $mensaje = 'No se puede acceder al servicio de validación de usuario/contraseña';
+      } catch (Exception $e) {
+        $mensaje = 'Se ha producido un error no controlado al validar usuario/contraseña';
+      }
     }
     $this->load->helper('Login');
     $data_top = array(
