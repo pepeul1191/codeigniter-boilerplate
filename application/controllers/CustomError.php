@@ -2,6 +2,27 @@
 
 class CustomError extends CI_Controller
 {
+  public function orverride()
+  {
+    if($this->input->server('REQUEST_METHOD') == 'GET'){
+      header('Location: ' . $this->config->item('base_url') . 'error/access/404');
+      exit();
+    }else{
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+            'Recurso no encontrado',
+            'Error 404'
+          ]
+        ]
+      );
+      $this->output
+        ->set_status_header(404)
+        ->set_output($rpta);
+    }
+  }
+
   public function access($error)
   {
     //libraries as filters
@@ -75,6 +96,7 @@ class CustomError extends CI_Controller
     $this->load->view('layouts/blank_header', $data_top);
     $this->load->view('custom_error/access');
     $this->load->view('layouts/blank_footer', array());
+    $this->output->set_status_header($status);
   }
 }
 
