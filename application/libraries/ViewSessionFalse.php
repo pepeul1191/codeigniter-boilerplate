@@ -13,7 +13,7 @@ class ViewSessionFalse
       }else{
         $continuar = true;
       }
-      if($continuar == true){
+      if($continuar == false){
         header('Location: ' . $params['config']->item('base_url'));
         exit();
       }
