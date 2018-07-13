@@ -4,6 +4,11 @@ class Login extends CI_Controller
 {
   public function index()
   {
+    //libraries as filters
+    $this->load->library('ViewSessionFalse', array(
+      'config' => $this->config,
+    ));
+    //controller function
     $this->load->helper('Login');
     $data_top = array(
       'title' => 'Bienvenido',
@@ -18,6 +23,7 @@ class Login extends CI_Controller
 
   public function acceder()
   {
+    //libraries as filters
     $this->load->library('HttpAccess',
       array(
         'config' => $this->config,
@@ -25,6 +31,10 @@ class Login extends CI_Controller
         'received' => $this->input->method(TRUE)
       )
     );
+    $this->load->library('ViewSessionFalse', array(
+      'config' => $this->config,
+    ));
+    //controller function
     $usuario = $this->input->post('usuario');
     $url1 = $this->config->item('servicios')['accesos']['url'] . 'sistema/usuario/validar';
     try {
@@ -122,6 +132,8 @@ class Login extends CI_Controller
 
   public function ver()
   {
+    //libraries as filters
+    //controller function
     if (array_key_exists('estado', $_SESSION)) {
       if($_SESSION['estado'] != 'activo'){
         echo '<h1>El usuario no se encuentra logueado</h1>';
@@ -140,6 +152,8 @@ class Login extends CI_Controller
 
   public function salir()
   {
+    //libraries as filters
+    //controller function
     session_destroy();
     header('Location: ' . $this->config->item('base_url') . 'login');
     exit();

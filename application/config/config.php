@@ -526,6 +526,7 @@ $config['proxy_ips'] = '';
 */
 
 $config['ambiente_static'] = 'desarrollo';
+$config['ambiente_session'] = 'activo';
 $config['base_url'] = 'http://localhost:8080/';
 $config['static_url'] = 'http://localhost:8080/public/';
 $config['sistema_id'] = '4';

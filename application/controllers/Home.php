@@ -4,6 +4,7 @@ class Home extends CI_Controller
 {
   public function index()
   {
+    //libraries as filters
   	$this->load->library('HttpAccess',
   		array(
   			'config' => $this->config,
@@ -11,6 +12,10 @@ class Home extends CI_Controller
   			'received' => $this->input->method(TRUE)
   		)
   	);
+    $this->load->library('ViewSessionTrue', array(
+      'config' => $this->config,
+    ));
+    //controller function
     $this->load->helper('Home');
     $data_top = array(
       'mensaje' => false,
