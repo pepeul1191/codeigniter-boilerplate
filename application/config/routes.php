@@ -57,8 +57,8 @@ $route['']['GET'] = 'home/index';
 # login
 $route['login']['GET'] = 'login/index';
 $route['login/acceder']['POST'] = 'login/acceder';
-$route['usuario/ver']['GET'] = 'login/ver';
-$route['usuario/salir']['GET'] = 'login/salir';
+$route['login/ver']['GET'] = 'login/ver';
+$route['login/cerrar']['GET'] = 'login/salir';
 # errores
 $route['error/access/(:num)']['GET'] = 'customError/access/$1';
 # ubicaciones

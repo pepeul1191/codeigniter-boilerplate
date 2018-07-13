@@ -7,7 +7,7 @@ class ViewSessionFalse
     $continuar = true;
 		if($params['config']->item('ambiente_session') == 'activo'){
       if (array_key_exists('estado', $_SESSION)) {
-        if($_SESSION['estado'] != 'activo'){
+        if($_SESSION['estado'] == 'activo'){
           $continuar = false;
         }
       }else{
