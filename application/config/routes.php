@@ -62,8 +62,8 @@ $route['usuario/salir']['GET'] = 'login/salir';
 # errores
 $route['error/access/(:num)']['GET'] = 'customError/access/$1';
 # ubicaciones
-$route['ubicaciones/departamento/listar']['GET'] = 'ubicaciones/departamento/listar';
-$route['ubicaciones/distrito/buscar']['GET'] = 'ubicaciones/distrito/buscar';
-$route['ubicaciones/distrito/nombre']['GET'] = 'ubicaciones/distrito/nombre';
-$route['ubicaciones/distrito/listar/(:num)']['GET'] = 'ubicaciones/distrito/listar/$1';
-$route['ubicaciones/provincia/listar/(:num)']['GET'] = 'ubicaciones/provincia/listar/$1';
+$route['departamento/listar']['GET'] = 'ubicaciones/departamento/listar';
+$route['distrito/buscar']['GET'] = 'ubicaciones/distrito/buscar';
+$route['distrito/nombre']['GET'] = 'ubicaciones/distrito/nombre';
+$route['distrito/listar/(:num)']['GET'] = 'ubicaciones/distrito/listar/$1';
+$route['provincia/listar/(:num)']['GET'] = 'ubicaciones/provincia/listar/$1';

@@ -530,6 +530,7 @@ $config['ambiente_session'] = 'activo';
 $config['base_url'] = 'http://localhost:8080/';
 $config['static_url'] = 'http://localhost:8080/public/';
 $config['sistema_id'] = '4';
+$config['csrf_val'] = 'PKBcauXg6sTXz7Ddlty0nejVgoUodXL89KNxcrfwkEme0Huqtj6jjt4fP7v2uF4L';
 $config['servicios'] = array(
   'accesos' => array(
     'url' => 'http://localhost:4000/',

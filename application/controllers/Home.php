@@ -5,13 +5,6 @@ class Home extends CI_Controller
   public function index()
   {
     //libraries as filters
-  	$this->load->library('HttpAccess',
-  		array(
-  			'config' => $this->config,
-  			'allow' => ['GET'],
-  			'received' => $this->input->method(TRUE)
-  		)
-  	);
     $this->load->library('ViewSessionTrue', array(
       'config' => $this->config,
     ));
@@ -32,12 +25,9 @@ class Home extends CI_Controller
         'modulo' => 'Accesos'
       )),
     );
-    $data_bottom = array(
-      'js_bottom' => 'dist/accesos.min.js',
-    );
-    $this->load->view('layouts/blank_header', $data_top);
+    $this->load->view('layouts/app_header', $data_top);
     $this->load->view('home/index');
-    $this->load->view('layouts/blank_footer', $data_bottom);
+    $this->load->view('layouts/app_footer', array());
   }
 }
 
