@@ -4,8 +4,21 @@ class HttpAccess {
   function __construct($params)
   {
 		if (!in_array($params['received'], $params['allow'])){
-			header( 'Location: ' . $params['config']->item('base_url') . 'error/access/404' );
-		}
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+            'Recurso no disponible a dicho método HTTP',
+            'Error 500'
+          ]
+        ]
+      );
+      echo $rpta;
+      $params['instance']->output
+        ->set_status_header(500)
+        ->set_output($rpta);
+      exit();
+    }
   }
 }
 

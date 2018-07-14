@@ -8,6 +8,14 @@ class Login extends CI_Controller
     $this->load->library('ViewSessionFalse', array(
       'config' => $this->config,
     ));
+    $this->load->library('HttpAccess',
+      array(
+        'config' => $this->config,
+        'allow' => ['GET'],
+        'received' => $this->input->server('REQUEST_METHOD'),
+        'instance' => $this,
+      )
+    );
     //controller function
     $this->load->helper('Login');
     $data_top = array(
@@ -24,16 +32,17 @@ class Login extends CI_Controller
   public function acceder()
   {
     //libraries as filters
+    $this->load->library('ViewSessionFalse', array(
+      'config' => $this->config,
+    ));
     $this->load->library('HttpAccess',
       array(
         'config' => $this->config,
         'allow' => ['POST'],
-        'received' => $this->input->method(TRUE)
+        'received' => $this->input->server('REQUEST_METHOD'),
+        'instance' => $this,
       )
     );
-    $this->load->library('ViewSessionFalse', array(
-      'config' => $this->config,
-    ));
     //controller function
     $usuario = $this->input->post('usuario');
     $url1 = $this->config->item('servicios')['accesos']['url'] . 'sistema/usuario/validar';

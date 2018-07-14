@@ -4,15 +4,16 @@ class Departamento extends CI_Controller
 {
   public function listar()
   {
-    /*
+    //libraries as filters
     $this->load->library('HttpAccess',
       array(
         'config' => $this->config,
         'allow' => ['GET'],
-        'received' => $this->input->method(TRUE)
+        'received' => $this->input->server('REQUEST_METHOD'),
+        'instance' => $this,
       )
     );
-    */
+    //controller function
     $rpta = '';
     $status = 200;
     try {
